@@ -1,39 +1,54 @@
 import React, { Component } from "react";
 import searchBook from "../api/searchBook";
-import BookCard from "./BookCard";
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import HeaderBar from "./HeaderBar";
+import BookCard from "./BookCard";
+
+const GlobalStyle = createGlobalStyle`
+  :root {
+    font-size: 62.5%
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #E0EAFC;
+    background: linear-gradient(to left, #CFDEF3, #E0EAFC);
+    font-family: 'Merriweather', serif;
+    line-height: 1.1;
+  }
+`;
+
+const MainGrid = styled.main`
+  display: grid;
+  grid-gap: 1.5rem;
+  padding: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+`;
 
 class App extends Component {
   state = {
-    inputText: '',
     books: []
   }
 
-  onSearchSubmit = async e => {
-    e.preventDefault();
-    const results = await searchBook(this.state.inputText)
+  onSearchSubmit = async searchText => {
+    const results = await searchBook(searchText)
     this.setState({books: results.data.items})
   }
 
-
-
   render() {
-    const MainGrid = styled.main`
-      display: grid;
-      grid-gap: 10px;
-      grid-template-columns: repeat(4, 1fr);
-    `;
-    const renderedresults = this.state.books.map((b,i) => <BookCard key={i} bookInfo={b.volumeInfo} buyLink={b.saleInfo.buyLink}/>)
+
+    const renderedresults = this.state.books.map((b,i) => <BookCard key={i} bookInfo={b.volumeInfo} animKey={i}/>)
   
     return (
       <div>
-        <header>
-          books
-          <form onSubmit={this.onSearchSubmit}>
-            <input type="text" value={this.setState.inputText} onChange={e => {this.setState({inputText: e.target.value})}}/>
-            <button type="submit">Search</button>
-          </form>
-        </header>
+        <GlobalStyle />
+        <HeaderBar onSearchSubmit={this.onSearchSubmit}/>
         <MainGrid>
           {renderedresults}
         </MainGrid>
