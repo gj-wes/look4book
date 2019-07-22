@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import HeaderBar from "./HeaderBar";
 import BookCard from "./BookCard";
+import { Trail } from "react-spring/renderprops";
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    font-size: 62.5%
+    font-size: 62.5%;
   }
   *,
   *::before,
@@ -20,15 +21,15 @@ const GlobalStyle = createGlobalStyle`
     background: #E0EAFC;
     background: linear-gradient(to left, #CFDEF3, #E0EAFC);
     font-family: 'Merriweather', serif;
-    line-height: 1.1;
+    line-height: 1.2;
   }
 `;
 
-const MainGrid = styled.main`
+const BooksGrid = styled.main`
   display: grid;
   grid-gap: 1.5rem;
   padding: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
 `;
 
 class App extends Component {
@@ -49,9 +50,16 @@ class App extends Component {
       <div>
         <GlobalStyle />
         <HeaderBar onSearchSubmit={this.onSearchSubmit}/>
-        <MainGrid>
-          {renderedresults}
-        </MainGrid>
+        <BooksGrid>
+          <Trail reset={true} 
+            items={renderedresults} 
+            keys={item => item.key} 
+            from={{transform: 'translate3d(0,10px,0)', opacity: 0 }} 
+            to={{transform: 'translate3d(0,0px,0)', opacity: 1 }}
+          >
+            {item => props => <div style={props}>{item}</div>}
+          </Trail>
+        </BooksGrid>
       </div>
     )
   }
