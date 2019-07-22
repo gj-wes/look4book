@@ -9,10 +9,26 @@ const Header = styled.header`
   background-color: #FEE140;
   background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
 
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   > h2 {
     margin: 0;
     font-size: 2rem;
     align-self: center;
+
+    @media (max-width: 450px) {
+      align-self: flex-start;
+      margin-bottom: 1rem;
+    }
+  }
+
+  > form {
+    @media (max-width: 450px) {
+      width: 100%;
+    }
   }
 
   > form > input {
@@ -24,10 +40,16 @@ const Header = styled.header`
     transition: width .3s linear;
     font-size: 1.5rem;
 
+    @media (max-width: 450px) {
+      width: 100%;
+    }
+
     &:focus {
       outline: none;
       box-shadow: 0px 0px 10px 5px #FEE140;
     }
+
+
   }
 `;
 

@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import HeaderBar from "./HeaderBar";
 import BookCard from "./BookCard";
-import { Trail } from "react-spring/renderprops";
+import FullScreenSearch from "./FullScreenSearch";
+import { Trail, Spring } from "react-spring/renderprops";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -49,17 +50,32 @@ class App extends Component {
     return (
       <div>
         <GlobalStyle />
-        <HeaderBar onSearchSubmit={this.onSearchSubmit}/>
-        <BooksGrid>
-          <Trail reset={true} 
-            items={renderedresults} 
-            keys={item => item.key} 
-            from={{transform: 'translate3d(0,10px,0)', opacity: 0 }} 
-            to={{transform: 'translate3d(0,0px,0)', opacity: 1 }}
-          >
-            {item => props => <div style={props}>{item}</div>}
-          </Trail>
-        </BooksGrid>
+        {this.state.books.length === 0 ? (
+          <FullScreenSearch onSearchSubmit={this.onSearchSubmit} />
+        ) : (
+          <div>
+
+            <Spring 
+            from={{transform: 'translate3d(0,-40px,0)', opacity: 0 }}
+            to={{transform: 'translate3d(0,0px,0)', opacity: 1 }} >
+              {props => <div style={props}><HeaderBar onSearchSubmit={this.onSearchSubmit}/></div>}
+            </Spring>
+
+            <BooksGrid>
+
+              <Trail reset={true} 
+                items={renderedresults} 
+                keys={item => item.key} 
+                from={{transform: 'translate3d(0,10px,0)', opacity: 0 }} 
+                to={{transform: 'translate3d(0,0px,0)', opacity: 1 }}
+              >
+                {item => props => <div style={props}>{item}</div>}
+              </Trail>
+
+            </BooksGrid>
+            
+          </div>
+        )}
       </div>
     )
   }
