@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import HeaderBar from "./HeaderBar";
 import BookCard from "./BookCard";
 import FullScreenSearch from "./FullScreenSearch";
+import bgsvg from "../images/FullSearchBackground.svg";
 import { Trail, Spring } from "react-spring/renderprops";
 
 const GlobalStyle = createGlobalStyle`
@@ -19,8 +20,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: #E0EAFC;
-    background: linear-gradient(to left, #CFDEF3, #E0EAFC);
+    background-image: url('${bgsvg}');
+    background-size: 600px 300px;
+    background-repeat: repeat;
     font-family: 'Merriweather', serif;
     line-height: 1.2;
   }
@@ -57,7 +59,7 @@ class App extends Component {
 
             <Spring 
             from={{transform: 'translate3d(0,-40px,0)', opacity: 0 }}
-            to={{transform: 'translate3d(0,0px,0)', opacity: 1 }} >
+            to={{transform: 'translate3d(0,0,0)', opacity: 1 }} >
               {props => <div style={props}><HeaderBar onSearchSubmit={this.onSearchSubmit}/></div>}
             </Spring>
 
@@ -67,7 +69,7 @@ class App extends Component {
                 items={renderedresults} 
                 keys={item => item.key} 
                 from={{transform: 'translate3d(0,10px,0)', opacity: 0 }} 
-                to={{transform: 'translate3d(0,0px,0)', opacity: 1 }}
+                to={{transform: 'translate3d(0,0,0)', opacity: 1 }}
               >
                 {item => props => <div style={props}>{item}</div>}
               </Trail>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import 'css-doodle';
 
 const FullScreen = styled.div`
   width: 100vw;
