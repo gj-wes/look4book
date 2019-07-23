@@ -40,17 +40,16 @@ const Card = styled.article`
   }
 
   > a {
-    --colour: #FA709A;
+    background-color: #FA709A;
     margin-top: auto;
     display: inline-block;
     align-self: flex-start;
-    border: 2px solid var(--colour);
-    border-radius: 5px;
-    color: var(--colour);
+    border-radius: 50px;
+    color: #ffffff;
     font-size: 1.1rem;
     font-weight: bold;
     text-decoration: none;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.8rem;
     transition: opacity .2s linear;
 
     &:hover {

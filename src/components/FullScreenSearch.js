@@ -10,7 +10,30 @@ const FullScreen = styled.div`
   flex-direction: column;
 
   > h1 {
-    font-size: 4rem;
+    font-size: 5rem;
+    position: relative;
+    transition: all .2s linear;
+
+    &:hover {
+      transform: translate(.3rem, -.3rem)
+    }
+
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -.5rem;
+      left: -1rem;
+      z-index: -1;
+      width: 100%;
+      height: 70%;
+      background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
+      transition: all .2s linear;
+    }
+
+    &:hover::after {
+      transform: translate(-.6rem, .6rem)
+    }
   }
 
   > form > input {
@@ -46,7 +69,7 @@ class FullScreenSearch extends Component {
   render() {
     return (
       <FullScreen>
-        <h1>Look4abook</h1>
+        <h1>Look4book</h1>
         <form onSubmit={this.onSearchFormSubmit}>
           <input required 
             placeholder="Search by Title, Author, ISBN..." 

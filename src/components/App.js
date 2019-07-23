@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: repeat;
     font-family: 'Merriweather', serif;
     line-height: 1.2;
+    color: #2d2d2d;
   }
 `;
 
@@ -32,7 +33,7 @@ const BooksGrid = styled.main`
   display: grid;
   grid-gap: 1.5rem;
   padding: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 `;
 
 class App extends Component {
@@ -47,7 +48,7 @@ class App extends Component {
 
   render() {
 
-    const renderedresults = this.state.books.map((b,i) => <BookCard key={i} bookInfo={b.volumeInfo} animKey={i}/>)
+    const renderedresults = this.state.books.map((b,i) => <BookCard key={i} bookInfo={b.volumeInfo} />)
   
     return (
       <div>
