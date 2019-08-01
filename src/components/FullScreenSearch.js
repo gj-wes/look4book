@@ -44,6 +44,7 @@ const FullScreen = styled.div`
     line-height: 1;
     border-radius: 50px;
     padding: 2rem 4rem;
+    outline: none;
 
     @media (max-width: 80rem) {
       width: 90vw;
